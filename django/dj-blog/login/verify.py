@@ -1,4 +1,4 @@
-from models import get_user_info
+from login.models import get_user_info
 
 def check_user_passwd(user_name, passwd):
     result = {'flag':flag,
@@ -10,7 +10,7 @@ def check_user_passwd(user_name, passwd):
             msg = ''
         else:
             flag = False
-            msg = 
+            msg = '' 
     else:
         flag = False
         msg = '没有这个人'

@@ -1,6 +1,5 @@
 from django.shortcuts import render, render_to_response
-from verify import check_user_passwd
-from login. 
+from login.verify import check_user_passwd
 
 # Create your views here.
 
