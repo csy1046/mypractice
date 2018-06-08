@@ -15,10 +15,9 @@ class Stack:
         return self.items.pop()
 
     def peek(self):
-        return self.item[-1]
+        return self.items[-1]
+
+    def list(self):
+        return self.items
         
-
-
-if __name__ == '__main__':
-    stack = Stack()
      
