@@ -39,19 +39,17 @@ def blockNum(p,sudoku):
 def initPoint(sudoku):  
     pointList=[]  
     length=len(sudoku)  
-    for i in range(length):  
-        print(i)
+    for i in range(length):
         if sudoku[i]==0:  
-            p=point(i%9,i//9)  
-            print(p)
+            p=point(i%9,i//9)
             for j in range(1,10):  
-                if j not in rowNum(p,sudoku) and j not in colNum(p,sudoku) and j not in blockNum(p,sudoku):  
-                    p.available.append(j)  
+                if j not in rowNum(p,sudoku) and j not in colNum(p,sudoku) and j not in blockNum(p,sudoku):
+                    p.available.append(j)
             pointList.append(p)  
     return pointList  
   
   
-def tryInsert(p,sudoku):  
+def tryInsert(p,sudoku):
     availNum=p.available  
     for v in availNum:  
         p.value=v  
@@ -61,7 +59,7 @@ def tryInsert(p,sudoku):
                 t1=time.time()  
                 useTime=t1-t0  
                 showSudoku(sudoku)  
-                print('\nuse Time: %f s'%(useTime))  
+                print('\nuse Time: %f s'%(useTime))
                 exit()  
             p2=pointList.pop()  
             tryInsert(p2,sudoku)  
@@ -85,22 +83,17 @@ def showSudoku(sudoku):
     for j in range(9):  
         for i in range(9):  
             print('%d '%(sudoku[j*9+i]),end='')  
-        print('')     
+        print('')
+    return sudoku
   
-if __name__=='__main__':  
-    sudoku=[  
-            8,0,0,0,0,0,0,0,0,  
-            0,0,3,6,0,0,0,0,0,  
-            0,7,0,0,9,0,2,0,0,  
-            0,5,0,0,0,7,0,0,0,  
-            0,0,0,0,4,5,7,0,0,  
-            0,0,0,1,0,0,0,3,0,  
-            0,0,1,0,0,0,0,6,8,  
-            0,0,8,5,0,0,0,1,0,  
-            0,9,0,0,0,0,4,0,0,  
-            ]  
+if __name__=='__main__':
+    a = '0,5,0,0,0,0,0,2,0,4,0,0,2,0,6,0,0,7,0,0,8,0,3,0,1,0,0,0,1,0,0,0,0,0,6,0,0,0,9,0,0,0,5,0,0,0,7,0,0,0,0,0,9,0,0,0,5,0,8,0,3,0,0,7,0,0,9,0,1,0,0,4,0,2,0,0,0,0,0,7,0'
+    l = a.split(',')
+    l = list(map(int, l))
+    sudoku = showSudoku(l)
+    print(sudoku)
     pointList=initPoint(sudoku)  
     showSudoku(sudoku)  
-    print('\n')  
-    p=pointList.pop()  
+    print('\n')
+    p=pointList.pop()
     tryInsert(p,sudoku)  
