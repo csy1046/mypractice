@@ -5,6 +5,7 @@ from login.verify import check_user_passwd
 
 
 def login(request):
+    print(22222)
     if request.method == 'POST':
         #passwd = request.POST.get('password', '')
         #user_name = request.POST.get('user_name', '')
