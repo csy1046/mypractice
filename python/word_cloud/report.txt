@@ -1,0 +1,98 @@
+一.登录模块逻辑
+
+1.HOST_IP/login/pwdavailable 检测用户名
+PwdAvaliable 对输入的电话号码进行验证，是否在数据库中，是否需要输入密码。
+2.获取验证码
+HOST_IP/login/vercode
+generate_vercode → post电话号码 → login.control.generate_vercode(检测USE_DEFAULT_VERCODE 只有PRODUCTIONPRE_PUB_SERVER是0，推测本地和测试环境是固定验证码，如果是正常环境会检测是不是固定的电话号码，如果不是就生成验证码) → 如果是生成的验证码 并且在测试或者发布的环境会发验证码到手机。
+3.验证码登录
+HOST_IP/o/token2/
+调用Token2的post方法 → 获取post数据（client相关都是写死的，跟安装的库有关）→验证USE_DEFAULT_VERCODE字段，正式的不验证。
+check_success直接给内部人员检查，login.control.login_success 通过电话号码获取用户信息，获取组织id，返回信息（用户名，组织名，头像信息，token，用户权限）
+正式环境：redis获取缓存，redis_cache.swartz_cache.SwartzCache.get_or_set获取缓存 如果不存在的话则新建,缓存次数检测，执行check_success，清除缓存值。
+
+
+二.主页
+
+1.HOST_IP/apiweb/user/page_permission?key=index
+用户访问权限
+get_user_id_from_token根据request获取用户id，执行cache_control.user_permission（获取用户所有角色，获取所有角色对应的模块，获取模块对应的权限，获取最大权限并去重，获取所有权限信息）,并加入redis。返回数据（pid 模块权限代码，id 模块下的子模块权限，type 接口类型，method url方法）。执行cache_control.system_permissions(获取permission数据库里面的东西)。通过前端传来的代表页面的key值，判断权限，处理数据，返回子页面的一些权限信息。
+2.HOST_IP/apiweb/user/head_info
+获取web端 首页可见可用的功能
+cache_control.user_base_info_by_id（获取用户基本信息），执行cache_control.user_permission（获取用户所有角色，获取所有角色对应的模块，获取模块对应的权限，获取最大权限并去重，获取所有权限信息）,并加入redis。处理数据，返回数据（右上角的头像，未读信息，子模块信息）
+3.HOST_IP/apiweb/user/
+获取用户信息
+执行cache_control.user_base_info_by_id（获取组织id），当用户信息和组织ID同时存在，执行cache_control.system_organization（获取组织信息），处理数据结构，返回数据（用户ID，头像，名字，电话，组织。）
+4.HOST_IP/apiweb/user/tip_info
+返回APP提示？
+5.HOST_IP/messages
+获取已读未读消息通知
+readstatus(0未读,1已读)，client（ 0 for WEB, 2 for Android, 3 for IOS）获取组织ID 用户ID页数client等发送到远程接口，从message库里面获取通知信息。返回通知相关信息。
+6.HOST_IP/user/orginfo/
+组织信息
+根据用户信息去organizaion里面取出组织信息。返回相关数据。
+
+
+三.业务跟进系统
+
+1.项目列表
+HOST_IP/apiweb/case/prolist
+获取查询信息，默认初始化都是空，执行control.get_main_project_list(org_id去Baseproject获取信息，判断source,是否归档，如果不是获取所有status为有效的项目，获取所有apps，判断是否可见全部案件，如果不是，获取这个用户的所有case_id,根据可视范围和项目id获取信息，根据输入关键字取项目名称id等的并集。数据库：1.source，BaseProject，ProjectParticipants 2.project_scope，BaseProject 3.project_category BaseProject 4.project_status BaseProject 5.project_main_member ProjectParticipants BaseProject 6.about_me ProjectTask 7.update BaseProject)
+2.HOST_IP/apiweb/case/pro/mainmembers
+获取组织下所有的案件成员
+control.get_user_all_main_members(通过组织ID获取组织信息，在ProjectParticipants里面找主要负责人，并获取人员详情)
+3.HOST_IP/apiweb/case/procategory
+获取业务类型和委托方身份接口
+执行control.get_project_prepare_data(获取ProjectCategory数据，根据业务类型处理数据格式。)
+4.HOST_IP/apiweb/case/pro/contact
+联系人相关操作
+获取：获取ProContactPeople的数据
+新建：需要联系人电话，姓名，项目ID，是否是主要联系人，添加项目日志
+更新：同上
+删除：项目，人员的ID
+5.HOST_IP/apiweb/case/pro/details
+获取项目详情
+control.valid_proj_data_permission(判断用户权限,有可视权限才会执行下一步)，control.get_project_details(分别判断业务范围获取对应的信息)，get_XIANGMU_preject_info()
+
+四.用户相关
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
