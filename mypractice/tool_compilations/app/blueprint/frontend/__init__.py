@@ -1,0 +1,158 @@
+from flask import Blueprint
+
+from app.blueprint.frontend import view
+
+frontend = Blueprint("frontend", __name__)
+
+frontend.add_url_rule("/", view_func=view.IndexView.as_view("index"))
+frontend.add_url_rule("/signin", view_func=view.IndexView.as_view("signin"))
+frontend.add_url_rule("/settings",
+                      view_func=view.IndexView.as_view("settings"))
+frontend.add_url_rule("/settings/role",
+                      view_func=view.IndexView.as_view("role"))
+frontend.add_url_rule("/settings/role/detail",
+                      view_func=view.IndexView.as_view("role_detail"))
+frontend.add_url_rule("/settings/role/modify",
+                      view_func=view.IndexView.as_view("role_modify"))
+frontend.add_url_rule("/settings/account",
+                      view_func=view.IndexView.as_view("account"))
+frontend.add_url_rule("/settings/account/modify",
+                      view_func=view.IndexView.as_view("account_modify"))
+frontend.add_url_rule("/settings/account/detail",
+                      view_func=view.IndexView.as_view("account_detail"))
+frontend.add_url_rule("/settings/password",
+                      view_func=view.IndexView.as_view("password"))
+frontend.add_url_rule("/portrait/user_portrait",
+                      view_func=view.IndexView.as_view("user_portrait"))
+frontend.add_url_rule("/portrait/portrait_search/detail",
+                      view_func=view.IndexView.as_view("detail"))
+frontend.add_url_rule("/portrait/portrait_colony",
+                      view_func=view.IndexView.as_view("portrait_colony"))
+frontend.add_url_rule("/portrait/portrait_search",
+                      view_func=view.IndexView.as_view("portrait_search"))
+frontend.add_url_rule("/transform_survey",
+                      view_func=view.IndexView.as_view("transform_survey"))
+frontend.add_url_rule("/transform_survey/detail",
+                      view_func=view.IndexView.as_view("page_detail"))
+frontend.add_url_rule("/transform_site_transform",
+                      view_func=view.IndexView.as_view("product_detail"))
+frontend.add_url_rule("/transform_site_transform/detail",
+                      view_func=view.IndexView.as_view("web_site_transform"))
+frontend.add_url_rule("/marketing_coupon",
+                      view_func=view.IndexView.as_view("coupon"))
+frontend.add_url_rule("/marketing_coupon/detail",
+                      view_func=view.IndexView.as_view("coupon_detail"))
+frontend.add_url_rule("/flow_summary",
+                      view_func=view.IndexView.as_view("survey"))
+frontend.add_url_rule("/flow_summary/detail",
+                      view_func=view.IndexView.as_view("survey_detail"))
+frontend.add_url_rule("/flow_summary/product_detail",
+                      view_func=view.IndexView.as_view(
+                          "survey_product_detail"))
+frontend.add_url_rule("/flow_page",
+                      view_func=view.IndexView.as_view("flow_page"))
+frontend.add_url_rule("/flow_out_net",
+                      view_func=view.IndexView.as_view("flow_out_net"))
+frontend.add_url_rule("/order_turnover",
+                      view_func=view.IndexView.as_view("order_turnover"))
+frontend.add_url_rule("/transform_product",
+                      view_func=view.IndexView.as_view("transform_product"))
+frontend.add_url_rule("/transform_product/detail",
+                      view_func=view.IndexView.as_view(
+                          "transform_product_detail"))
+frontend.add_url_rule("/transform_product/detail/page",
+                      view_func=view.IndexView.as_view(
+                          "transform_product_detail_page"))
+frontend.add_url_rule("/transform_wap_transform",
+                      view_func=view.IndexView.as_view(
+                          "transform_wap_transform"))
+frontend.add_url_rule("/transform_wap_transform/detail",
+                      view_func=view.IndexView.as_view(
+                          "transform_wap_transform_detail"))
+frontend.add_url_rule("/trade_survey",
+                      view_func=view.IndexView.as_view("trade_survey"))
+frontend.add_url_rule("/trade_survey/detail",
+                      view_func=view.IndexView.as_view("trade_survey_detail"))
+frontend.add_url_rule("/trade_survey/product_detail",
+                      view_func=view.IndexView.as_view(
+                          "trade_survey_product_detail"))
+frontend.add_url_rule("/flow_summary/mall/detail",
+                      view_func=view.IndexView.as_view(
+                          "flow_survey_mall_detail"))
+frontend.add_url_rule("/trade_survey/mall/detail",
+                      view_func=view.IndexView.as_view(
+                          "trade_survey_mall_detail"))
+frontend.add_url_rule("/flow_visit",
+                      view_func=view.IndexView.as_view("flow_visit"))
+frontend.add_url_rule("/transform_contact_point",
+                      view_func=view.IndexView.as_view(
+                          "transform_contact_point"))
+frontend.add_url_rule("/business/member_mall",
+                      view_func=view.IndexView.as_view("business_member_mall"))
+frontend.add_url_rule("/business",
+                      view_func=view.IndexView.as_view("business"))
+frontend.add_url_rule("/trade_customer",
+                      view_func=view.IndexView.as_view("trade_customer"))
+frontend.add_url_rule("/summary", view_func=view.IndexView.as_view("summary"))
+frontend.add_url_rule("/marketing_summary",
+                      view_func=view.IndexView.as_view("marketing_summary"))
+frontend.add_url_rule("/marketing_summary/detail",
+                      view_func=view.IndexView.as_view("marketing_detail"))
+frontend.add_url_rule("/portrait/user_grouping",
+                      view_func=view.IndexView.as_view("user_grouping"))
+frontend.add_url_rule("/portrait/user_grouping/edit",
+                      view_func=view.IndexView.as_view("user_grouping_edit"))
+frontend.add_url_rule("/portrait/user_grouping/users",
+                      view_func=view.IndexView.as_view("user_grouping_user"))
+frontend.add_url_rule("/trade_track",
+                      view_func=view.IndexView.as_view("trade_track"))
+frontend.add_url_rule("/settings/condition_control",
+                      view_func=view.IndexView.as_view("condition_control"))
+frontend.add_url_rule("/stat", view_func=view.IndexView.as_view("stat"))
+frontend.add_url_rule("/channel/summary",
+                      view_func=view.IndexView.as_view("channel"))
+frontend.add_url_rule("/channel/detail",
+                      view_func=view.IndexView.as_view("channel_detail"))
+frontend.add_url_rule("/precision_marketing",
+                      view_func=view.IndexView.as_view("precision_marketing"))
+frontend.add_url_rule("/precision_marketing/edit",
+                      view_func=view.IndexView.as_view("precision_marketing_edit"))
+frontend.add_url_rule("/precision_marketing/users",
+                      view_func=view.IndexView.as_view("precision_marketing_users"))
+frontend.add_url_rule("/precision_marketing/detail",
+                      view_func=view.IndexView.as_view("precision_marketing_detail"))
+frontend.add_url_rule("/report_form/kpi",
+                      view_func=view.IndexView.as_view("kpi"))
+frontend.add_url_rule("/report_form/cloud_shelf",
+                      view_func=view.IndexView.as_view("cloud_shelf"))
+frontend.add_url_rule('/test/user_portrait',
+                      view_func=view.IndexView.as_view('test_user_portrait'))
+frontend.add_url_rule('/report_form/help_poor',
+                      view_func=view.IndexView.as_view('report_form_help_poor'))
+frontend.add_url_rule('/precision_marketing/edit/manual',
+                      view_func=view.IndexView.as_view('precision_marketing_edit_manual'))
+frontend.add_url_rule('/precision_marketing/edit/strategy',
+                      view_func=view.IndexView.as_view('precision_marketing_edit_strategy'))
+frontend.add_url_rule('/precision_marketing/detail/manual',
+                      view_func=view.IndexView.as_view('precision_marketing_detail_manual'))
+frontend.add_url_rule('/precision_marketing/detail/strategy',
+                      view_func=view.IndexView.as_view('precision_marketing_detail_strategy'))
+frontend.add_url_rule('/precision_marketing/online/marketing',
+                      view_func=view.IndexView.as_view('precision_marketing_online_marketing'))
+frontend.add_url_rule('/portrait/recommend_push',
+                      view_func=view.IndexView.as_view('portrait_recommend_push'))
+frontend.add_url_rule('/report_form/le_shan',
+                      view_func=view.IndexView.as_view('report_form_le_shan'))
+frontend.add_url_rule('/report_form/commodity',
+                      view_func=view.IndexView.as_view('report_form_commodity'))
+frontend.add_url_rule('/service/review/analysis',
+                      view_func=view.IndexView.as_view('service_review_analysis'))
+frontend.add_url_rule('/report_form/market/kpi',
+                      view_func=view.IndexView.as_view('report_form_market_kpi'))
+frontend.add_url_rule('/trade/repeat/purchase',
+                      view_func=view.IndexView.as_view('trade_track_repeat_purchase'))
+frontend.add_url_rule('/portrait/user_grouping/portrayal', view_func=view.IndexView.as_view('portrait_user_grouping_portrayal'))
+frontend.add_url_rule('/report_form/collect',
+                      view_func=view.IndexView.as_view('report_form_collect'))
+frontend.add_url_rule('/business/assist_poor',
+                      view_func=view.IndexView.as_view('business_assist_poor'))
