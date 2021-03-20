@@ -20,7 +20,7 @@ gevent==1.4.0
 greenlet==0.4.15
 idna==2.8
 itsdangerous==1.1.0
-jinja2==2.10.1
+jinja2==2.11.3
 kombu==4.5.0
 markupsafe==1.1.1
 mongoengine==0.17.0
